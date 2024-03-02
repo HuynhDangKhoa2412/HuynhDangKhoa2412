@@ -1,0 +1,44 @@
+<body>
+    <h1>Nhập 2 số a và b(a < b)</h1>
+            <form onsubmit="handleSubmit(event)">
+                a:<input type="number" name="a" id="a"><br>
+                b:<input type="number" name="b" id="b"><br>
+                <button> tổng số nguyên tố</button>
+            </form>
+            <p id="label-arr"></p>
+            <p id="result"></p>
+
+            <script>
+                function handleSubmit(event) {
+                    event.preventDefault();
+                    var a = parseInt(document.getElementById('a').value);
+                    var b = parseInt(document.getElementById('b').value);
+                    console.log(a, b)
+                    var primeSum = 0;
+                    var primeNumber = [];
+                    function isPrime(num) {
+                        if (num <= 1) return false;
+                        if (num <= 3) return true;
+
+                        if (num % 2 === 0 || num % 3 === 0) return false;
+
+                        for (var i = 5; i * i <= num; i += 6) {
+                            if (num % i === 0 || num % (i + 2) === 0) {
+                                return false;
+                            }
+                        }
+
+                        return true;
+                    }
+                    for (var i = a; i <= b; i++) {
+                        if (isPrime(i)) {
+                            console.log(i);
+                            primeNumber.push(i);
+                            primeSum += i;
+                        }
+                    }
+                    document.getElementById('label-arr').innerText = `Các số nguyên tố trong khoảng từ ${a} đến ${b} là: ${primeNumber.join(',')}`
+                    document.getElementById('result').innerText = "Tổng các số nguyên tố trong khoảng là " + primeSum;
+                }
+            </script>
+</body>
